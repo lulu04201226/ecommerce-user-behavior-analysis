@@ -1,0 +1,18 @@
+{
+  "row_count": 100000,
+  "column_count_raw": 13,
+  "grain": "one anonymous visit record per row; not a unique user",
+  "null_cells_raw": 0,
+  "exact_duplicate_rows": 42006,
+  "invalid_age_count": 2,
+  "unknown_source_count": 123,
+  "logical_funnel_violations": {
+    "home_page->listing_page": 0,
+    "listing_page->product_page": 0,
+    "product_page->payment_page": 0,
+    "payment_page->confirmation_page": 0
+  },
+  "has_user_id": false,
+  "has_session_id": false,
+  "has_timestamp": false
+}
