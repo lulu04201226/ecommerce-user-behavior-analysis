@@ -85,29 +85,13 @@ Direct、SEO、Ads 合计 99,877 条，其余 123 条渠道信息缺失，保留
 ```text
 .
 ├─ README.md
-├─ data/            # 数据接入说明，不公开来源未确认的完整原始数据
+├─ data/            # 数据字段说明（不含原始数据文件）
 ├─ src/             # 清洗、分析、图表与报告脚本
 ├─ analysis/        # 关键审计表与聚合分析结果
 ├─ assets/          # 报告图表和看板截图
 ├─ docs/            # GitHub Pages 交互式看板
 ├─ methodology/     # 指标、验证和质量检查说明
 └─ report/          # 完整项目报告 PDF
-```
-
-## 本地复现
-
-```bash
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-将获得授权的数据文件放入 `data/raw/user_behavior.csv`，并根据 [数据接入说明](data/README.md) 完成字段映射，再按脚本编号运行：
-
-```bash
-python src/01_prepare_data.py
-python src/02_analyze.py
-python src/03_visualize.py
 ```
 
 ## 数据边界
@@ -117,7 +101,7 @@ python src/03_visualize.py
 - 缺少订单金额、毛利和渠道成本，不能直接计算 GMV、利润或 ROI。
 - 理论新增确认记录属于机会情景测算，不是上线效果承诺。
 - 分群和渠道差异来自观察性数据，只能支持问题定位和实验设计，不能直接证明因果关系。
-- 数据集用于分析练习和业务流程模拟；仓库不公开完整原始数据，仅提供字段说明、聚合结果和可复现代码。
+- 数据集用于分析练习和业务流程模拟。
 
 ## 技术栈
 
