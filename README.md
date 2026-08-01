@@ -106,7 +106,3 @@ Direct、SEO、Ads 合计 99,877 条，其余 123 条渠道信息缺失，保留
 ## 技术栈
 
 `Python` · `pandas` · `NumPy` · `Matplotlib` · `Plotly` · `statsmodels` · `ReportLab`
-
-## 作者
-
-宋亭萱｜数据分析与互联网增长方向
