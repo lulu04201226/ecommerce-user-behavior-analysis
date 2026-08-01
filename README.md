@@ -2,11 +2,11 @@
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-![Dashboard](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?logo=streamlit&logoColor=white)
+[![Dashboard](https://img.shields.io/badge/Streamlit-Live-FF4B4B?logo=streamlit&logoColor=white)](https://ecommerce-user-behavior-analysis.streamlit.app/)
 
 > 基于 100,000 条匿名访问记录，从数据治理、漏斗诊断、人群拆解和渠道校正出发，定位核心转化瓶颈，并将分析结果转化为可执行的增长实验。
 
-[查看 Streamlit Dashboard 源码](dashboard/app.py) · [下载完整项目报告](report/电商用户行为漏斗与转化增长分析_项目报告.pdf)
+[在线体验 Streamlit Dashboard](https://ecommerce-user-behavior-analysis.streamlit.app/) · [查看 Dashboard 源码](dashboard/app.py) · [下载完整项目报告](report/电商用户行为漏斗与转化增长分析_项目报告.pdf)
 
 ![交互式分析看板](assets/dashboard/dashboard_final.png)
 
@@ -90,7 +90,6 @@ Direct、SEO、Ads 合计 99,877 条，其余 123 条渠道信息缺失，保留
 ├─ analysis/        # 关键审计表与聚合分析结果
 ├─ assets/          # 报告图表和看板截图
 ├─ dashboard/       # Streamlit 交互式 Dashboard
-├─ docs/            # 旧版静态看板（部署切换前保留）
 └─ report/          # 完整项目报告 PDF
 ```
 
