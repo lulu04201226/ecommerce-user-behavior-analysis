@@ -90,7 +90,6 @@ Direct、SEO、Ads 合计 99,877 条，其余 123 条渠道信息缺失，保留
 ├─ analysis/        # 关键审计表与聚合分析结果
 ├─ assets/          # 报告图表和看板截图
 ├─ docs/            # GitHub Pages 交互式看板
-├─ methodology/     # 指标、验证和质量检查说明
 └─ report/          # 完整项目报告 PDF
 ```
 
