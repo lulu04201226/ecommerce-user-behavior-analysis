@@ -161,16 +161,16 @@ with overview_tab:
     left, right = st.columns([1.25, 1])
     with left:
         st.markdown("#### 五级漏斗到达量")
-        st.plotly_chart(funnel_figure(funnel), use_container_width=True)
+        st.plotly_chart(funnel_figure(funnel), use_container_width=True, key="overview_funnel")
     with right:
         st.markdown("#### 环节流失率与绝对流失")
-        st.plotly_chart(loss_figure(funnel), use_container_width=True)
+        st.plotly_chart(loss_figure(funnel), use_container_width=True, key="overview_loss")
     st.markdown("<b>30 秒结论：</b>整体确认页转化率为 <b>2.40%</b>；商品页 → 支付页流失 <b>42,756</b> 条，是优先级最高的增长瓶颈。", unsafe_allow_html=True)
 
 with funnel_tab:
     st.markdown("#### 漏斗诊断")
     st.caption("同时展示环节分母、到达量与流失量，避免只看百分比造成优先级误判。")
-    st.plotly_chart(funnel_figure(funnel), use_container_width=True)
+    st.plotly_chart(funnel_figure(funnel), use_container_width=True, key="diagnostic_funnel")
     audit = funnel.rename(columns={"stage": "页面", "reached_records": "到达量", "denominator": "环节分母", "step_rate": "环节转化率", "lost_records": "流失量"}).copy()
     audit["环节转化率"] = audit["环节转化率"].map(lambda x: f"{x:.2%}")
     st.dataframe(audit, use_container_width=True)
@@ -178,19 +178,19 @@ with funnel_tab:
 with user_tab:
     st.markdown("#### 新老用户漏斗差异")
     selected_users = st.multiselect("选择用户类型", ["新用户", "老用户"], default=["新用户", "老用户"])
-    if selected_users: st.plotly_chart(user_figure(user, selected_users), use_container_width=True)
+    if selected_users: st.plotly_chart(user_figure(user, selected_users), use_container_width=True, key="user_segments")
     else: st.warning("请至少选择一种用户类型。")
     st.markdown("新老用户在漏斗前两步差异有限，差距主要在商品页之后扩大，因此新用户应作为 P0 实验的预设观察分层。")
     st.divider()
     st.markdown("#### 访问深度与最终转化")
     include_structural = st.checkbox("显示结构性不可达分组", value=True)
-    st.plotly_chart(depth_figure(depth, include_structural), use_container_width=True)
+    st.plotly_chart(depth_figure(depth, include_structural), use_container_width=True, key="visit_depth")
     st.caption("注：访问深度＜5页的分组无法走完五级漏斗，0% 属于结构性零值，不纳入行为差异比较。所有柱均标注样本量 n。")
 
 with channel_tab:
     st.markdown("#### 渠道原始转化率与结构标准化结果")
     st.caption("统一使用全体样本的“用户类型 × 设备”联合分布作为权重，减少渠道用户构成差异带来的偏差。")
-    st.plotly_chart(channel_figure(channel), use_container_width=True)
+    st.plotly_chart(channel_figure(channel), use_container_width=True, key="channel_standardization")
     st.markdown("Direct 原始转化率 **3.03%**，标准化后约 **2.40%**，说明原始优势部分来自老用户占比较高。该结果接近整体均值是本次权重和分层组合后的数值结果，并非算法必然收敛。")
     display = channel.rename(columns={"source": "渠道", "records": "样本量 n", "raw_rate": "原始转化率", "standardized_rate_user_device": "结构标准化转化率", "empty_cells": "空分层数", "small_cells_lt30": "小样本分层数(<30)", "covered_weight": "覆盖权重"}).copy()
     for column in ["原始转化率", "结构标准化转化率", "覆盖权重"]: display[column] = display[column].map(lambda x: f"{x:.2%}")
@@ -200,7 +200,7 @@ with channel_tab:
 with growth_tab:
     st.markdown("#### 核心环节提升情景")
     lifts = st.multiselect("选择商品页 → 支付页提升幅度", uplift["lift_pp"].tolist(), default=uplift["lift_pp"].tolist(), format_func=lambda x: f"{x:.1f} 个百分点")
-    if lifts: st.plotly_chart(uplift_figure(uplift, lifts), use_container_width=True)
+    if lifts: st.plotly_chart(uplift_figure(uplift, lifts), use_container_width=True, key="uplift_scenarios")
     else: st.warning("请至少选择一个提升情景。")
     one = uplift.loc[uplift["lift_pp"] == 1.0].iloc[0]
     st.markdown(f"若核心环节提升 **1 个百分点**，约新增 **{one['extra_confirmations']:.0f} 条确认记录**，相当于当前确认量提升 **{one['relative_confirmations_lift']:.2%}**。")
